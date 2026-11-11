@@ -1,0 +1,150 @@
+Technology logos used by Orbitto
+
+These marks identify technologies used by the portfolio owner. They do not imply certification, sponsorship, or endorsement. The original artwork files, colors and proportions are retained. All product names and logos belong to their respective owners.
+
+Rust logo
+Copyright: The Rust Project / Rust logo contributors.
+Source: https://github.com/rust-lang/rust-artwork/tree/main/logo
+License: Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+Original image used without changes.
+Trademark policy: https://rustfoundation.org/policy/rust-trademark-policy/
+
+GitHub Octicons (Copilot and GitHub mark)
+Copyright (c) GitHub Inc. MIT License.
+Full license: github-octicons-LICENSE.txt (included alongside this file)
+https://github.com/primer/octicons/blob/main/LICENSE
+
+Kubernetes and the Kubernetes logo are trademarks of The Linux Foundation.
+CNCF brand guidance: https://www.cncf.io/brand-guidelines/
+
+Sources for bundled logos and technology icons:
+
+python
+https://www.python.org/static/opengraph-icon-200x200.png
+Brand guidance: https://www.python.org/psf/trademarks-faq/
+
+go
+https://go.dev/images/go-logo-blue.svg
+Brand guidance: https://go.dev/brand
+
+typescript
+https://www.typescriptlang.org/icons/icon-48x48.png
+Brand guidance: https://www.typescriptlang.org/branding/
+
+react
+https://react.dev/favicon.ico
+
+django
+https://static.djangoproject.com/img/logos/django-logo-positive.svg
+
+streamlit
+https://streamlit.io/images/brand/streamlit-logo-primary-colormark-darktext.svg
+
+nextjs
+https://nextjs.org/favicon.ico
+
+qt
+https://www.qt.io/hubfs/favicon.ico
+
+vllm
+https://raw.githubusercontent.com/vllm-project/media-kit/main/vLLM-Logo.svg
+
+ollama
+https://raw.githubusercontent.com/ollama/ollama/main/docs/ollama-logo.svg
+
+copilot
+https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg
+Brand guidance: https://github.com/primer/octicons/blob/main/LICENSE
+
+github
+https://raw.githubusercontent.com/primer/octicons/main/icons/mark-github-24.svg
+Brand guidance: https://github.com/primer/octicons/blob/main/LICENSE
+
+codex
+https://openai.com/favicon.ico
+
+devin
+https://devin.ai/favicon.ico
+
+debian
+https://www.debian.org/logos/openlogo-nd.svg
+
+centos
+https://www.centos.org/assets/img/centos-symbol.svg
+
+docker
+https://www.docker.com/favicon.ico
+Brand guidance: https://www.docker.com/company/newsroom/media-resources/
+
+kubernetes
+https://raw.githubusercontent.com/cncf/artwork/main/projects/kubernetes/icon/color/kubernetes-icon-color.svg
+Brand guidance: https://www.cncf.io/brand-guidelines/
+
+googlecloud
+https://www.gstatic.com/images/branding/product/2x/google_cloud_64dp.png
+Brand guidance: https://about.google/brand-resource-center/
+
+mysql
+https://www.mysql.com/common/logos/logo-mysql-170x115.png
+
+postgresql
+https://www.postgresql.org/media/img/about/press/elephant.png
+Brand guidance: https://www.postgresql.org/about/policies/trademarks/
+
+rust
+https://raw.githubusercontent.com/rust-lang/rust-artwork/main/logo/rust-logo.svg
+Brand guidance: https://rustfoundation.org/policy/rust-trademark-policy/
+
+flask
+https://raw.githubusercontent.com/pallets/flask/main/docs/_static/flask-icon.svg
+
+ubuntu
+https://assets.ubuntu.com/v1/be7e4cc6-COF-favicon-32x32.png
+
+claude
+https://code.claude.com/docs/mintlify-assets/_mintlify/favicons/claude-code/pLsy-mRpNksna2sx/_generated/favicon/android-chrome-192x192.png
+
+uipath
+https://images.ctfassets.net/5965pury2lcm/1tnmFcdDiCxf9zC14g97ri/19aa59ad1ac0f7bab14838fae98fd99c/favicon-icon.png
+
+fastapi
+https://fastapi.tiangolo.com/img/favicon.png
+
+gitlab
+https://unpkg.com/@gitlab/svgs@3.173.0/dist/illustrations/gitlab_logo.svg
+Official package: @gitlab/svgs 3.173.0
+Official repository: https://gitlab.com/gitlab-org/gitlab-svgs/-/blob/main/illustrations/gitlab_logo.svg
+Brand guidance: https://handbook.gitlab.com/handbook/marketing/brand-experience/trademark-guidelines/
+Copyright (c) 2011-present GitLab Inc.
+Package license: MIT; full license in gitlab-svgs-LICENSE.txt
+Original logo used without changes to identify GitLab CI/CD.
+
+TechIcons / Devicon technology icons
+Catalogue: https://techicons.dev/
+TechIcons credits https://github.com/devicons/devicon as its upstream collection.
+Copyright (c) 2015 konpa. MIT License.
+Full license: devicon-LICENSE.txt (included alongside this file)
+Original SVG files used without recoloring or reshaping.
+
+javascript
+Catalogue page: https://techicons.dev/icons/javascript
+SVG source: https://icon.icepanel.io/Technology/svg/JavaScript.svg
+
+c
+Catalogue page: https://techicons.dev/icons/c
+SVG source: https://icon.icepanel.io/Technology/svg/C.svg
+
+cplusplus
+Catalogue page: https://techicons.dev/icons/cplusplus
+SVG source: https://icon.icepanel.io/Technology/svg/C%2B%2B-%28CPlusPlus%29.svg
+
+bash
+Catalogue page: https://techicons.dev/icons/bash
+SVG source: https://icon.icepanel.io/Technology/svg/Bash.svg
+
+githubactions
+Catalogue page: https://techicons.dev/icons/githubactions
+SVG source: https://icon.icepanel.io/Technology/svg/GitHub-Actions.svg
+
+Shell Script uses the Bash icon as a representative mark. Its experience period covers Shell Script, not a separately asserted Bash duration.

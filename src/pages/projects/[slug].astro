@@ -1,0 +1,54 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import ThemeisleIcon from '../../components/ThemeisleIcon.astro';
+import PortfolioIllustration from '../../components/PortfolioIllustration.astro';
+import { pathTo, site } from '../../config/site';
+import { getPublishedProjects, getProjectCategory } from '../../lib/projects';
+export async function getStaticPaths() {
+  const projects = await getPublishedProjects();
+  return projects.map(project => ({ params: { slug: project.id }, props: { project } }));
+}
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { data } = project;
+const isLeadership = project.id === 'development-leadership';
+---
+<BaseLayout title={`${data.title} — 実績 | ${site.displayName}`} description={data.summary}>
+  <article class="project-detail container">
+    <a class="back-link text-link" href={pathTo('#work')}>← 実績一覧に戻る</a>
+    <div class:list={['detail-introduction', { 'detail-introduction--illustrated': isLeadership }]}>
+      <div class="detail-heading">
+      <p class="eyebrow">SELECTED WORK / {String(data.order).padStart(2, '0')}</p>
+      <span class="badge">{getProjectCategory(project)}</span>
+      <h1>{data.title}<span>{data.subtitle}</span></h1>
+      <p>{data.summary}</p>
+      <div class="tags">{data.tags.map(tag => <span>{tag}</span>)}</div>
+      </div>
+      {isLeadership && <PortfolioIllustration name="shared-goals" class="leadership-illustration" loading="eager" />}
+    </div>
+    <div class="detail-layout">
+      <aside class="project-sidebar">
+        {data.illustration && !isLeadership && <ThemeisleIcon name={data.illustration} id={`detail-${project.id}`} />}
+        <div><span class="tiny-label">ROLE</span><p>{data.role}</p></div>
+        <div><span class="tiny-label">CATEGORY</span><p>{getProjectCategory(project)}</p></div>
+        <div><span class="tiny-label">TECHNOLOGY</span><p>{data.tags.join(' / ')}</p></div>
+        <div><span class="tiny-label">DESIGN FOCUS</span><p>{data.focus}</p></div>
+        {data.githubUrl && <a class="text-link" href={data.githubUrl} target="_blank" rel="noopener noreferrer">GitHubリポジトリ<Icon name="external" size={17} /></a>}
+        {data.docsUrl && <a class="text-link" href={data.docsUrl} target="_blank" rel="noopener noreferrer">公開ドキュメント<Icon name="external" size={17} /></a>}
+      </aside>
+      <div>
+        <div class="detail-diagram" aria-label={`${data.workflowCaption}：${data.workflow.join('、')}`}>
+          <p class="tiny-label">WORKFLOW OVERVIEW</p>
+          <div>{data.workflow.map((step, index) => <>{index > 0 && <b aria-hidden="true">→</b>}{index === 2 ? <strong>{step}</strong> : <span>{step}</span>}</>)}</div>
+          <p>説明用の概念図です。実際の画面・内部構成は掲載していません。</p>
+        </div>
+        <div class="case-delivered"><span class="tiny-label">IMPLEMENTED</span><p>{data.outcome}</p></div>
+        <div class="prose"><Content /></div>
+        <p class="case-disclosure">{data.context === 'career' ? '本業で担当した役割と取り組みを、会社名・固有案件名・内部構成を伏せて紹介しています。チーム全体の成果を個人だけの成果として扱っていません。' : '副業で担当した内容を、会社名・サービス名・業務固有の情報を伏せて紹介しています。'} 実データ・コード・画面や、未確認の効果数値は掲載していません。</p>
+        <div class="detail-cta"><p>システム化したい業務や、設計・技術選定のご相談はありませんか。</p><a class="button button-primary" href={pathTo('#contact')}>お問い合わせ<Icon name="arrow" size={18} /></a></div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

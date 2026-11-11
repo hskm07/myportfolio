@@ -1,0 +1,55 @@
+---
+import { stackAsOf, stackUpdatedAt, stackCategories, techStack, experienceLabel } from '../config/tech-stack';
+import { pathTo } from '../config/site';
+const logoImports = import.meta.glob<string>('../assets/tech-logos/*', { eager: true, query: '?url', import: 'default' });
+const logos = Object.fromEntries(Object.entries(logoImports).map(([path, url]) => [path.split('/').pop()!.split('.')[0], url]));
+const categoryName = Object.fromEntries(stackCategories.map(category => [category.id, category.en]));
+for (const tech of techStack) {
+  for (const logo of tech.logos ?? (tech.logo ? [tech.logo] : [])) {
+    if (!logos[logo]) throw new Error(`Missing technology icon: ${logo}`);
+  }
+}
+---
+<section id="tech-stack" class="section tech-stack-section container" aria-labelledby="tech-stack-heading" data-tech-stack>
+  <div class="section-heading"><p class="section-index">02 / TECHNOLOGY & SKILLS</p><div><h2 id="tech-stack-heading">設計と実装を支える、<br class="mobile-break" />技術と経験。</h2><p class="section-intro">言語、AI・LLM、Web、基盤、チームリードまで。<br />これまで培った技術・スキルと、経験年数をまとめています。</p></div></div>
+  <div class="tech-stack-meta"><p class="eyebrow">EXPERIENCE / <time datetime={stackUpdatedAt.iso}>UPDATED 2026.11</time></p><p data-tech-count role="status" aria-live="polite">{techStack.length}件を表示</p></div>
+  <div class="tech-filter" role="group" aria-label="技術スタックのカテゴリ" data-tech-filters hidden>
+    <button type="button" data-tech-filter="all" aria-pressed="true">すべて<span>{techStack.length}</span></button>
+    {stackCategories.map(category => <button type="button" data-tech-filter={category.id} aria-pressed="false">{category.label}<span>{techStack.filter(tech => tech.category === category.id).length}</span></button>)}
+  </div>
+  <ul class="tech-list" role="list">
+    {techStack.map(tech => {
+      const years = tech.months === null ? 0 : Math.floor(tech.months / 12);
+      const months = tech.months === null ? 0 : tech.months % 12;
+      const iconNames = tech.logos ?? (tech.logo ? [tech.logo] : []);
+      return <li class="tech-item" data-tech-category={tech.category} data-tech-id={tech.id}>
+        <span class:list={['tech-logo', { 'tech-logo-pair': iconNames.length > 1 }]} aria-hidden="true">{iconNames.length ? iconNames.map(icon => <img src={logos[icon]} alt="" width="40" height="40" loading="lazy" decoding="async" />) : <span class="tech-monogram">{tech.monogram}</span>}</span>
+        <div class="tech-description"><p class="tech-category">{categoryName[tech.category]}</p><h3>{tech.name}</h3><p>{tech.description}</p></div>
+        <div class="tech-experience" role="group" aria-label={`経験：${experienceLabel(tech.months)}`}>
+          {tech.months === null ? <><strong class="tech-unquantified">実務で使用</strong><span class="tech-duration-note">年数未記載</span></> : <strong aria-hidden="true">{years || months}<span>{years ? '年' : 'か月'}</span>{years > 0 && months > 0 && <small>{months}か月</small>}</strong>}
+        </div>
+      </li>;
+    })}
+  </ul>
+  <div class="tech-stack-notes"><p>経験年数は{stackAsOf.label}の職務経歴書を基にし、チームリード・GitLab CI/CDは{stackUpdatedAt.label}の追記内容を反映しています。「実務で使用」は年数未記載の技術です。</p><p>各公式配布元とTechIconsの技術アイコンを使用し、未掲載の技術やマネジメントスキルは略称で表示しています。各名称・ロゴはそれぞれの権利者に帰属します。<a href={pathTo('licenses/tech-logos.txt')}>アイコンの出典・ライセンス</a></p></div>
+</section>
+<script>
+  const stack = document.querySelector<HTMLElement>('[data-tech-stack]');
+  if (stack) {
+    const controls = stack.querySelector<HTMLElement>('[data-tech-filters]');
+    const buttons = stack.querySelectorAll<HTMLButtonElement>('[data-tech-filter]');
+    const items = stack.querySelectorAll<HTMLElement>('[data-tech-category]');
+    const count = stack.querySelector<HTMLElement>('[data-tech-count]');
+    if (controls) controls.hidden = false;
+    buttons.forEach(button => button.addEventListener('click', () => {
+      const category = button.dataset.techFilter;
+      let visible = 0;
+      items.forEach(item => {
+        item.hidden = category !== 'all' && item.dataset.techCategory !== category;
+        if (!item.hidden) visible++;
+      });
+      buttons.forEach(filter => filter.setAttribute('aria-pressed', String(filter === button)));
+      if (count) count.textContent = `${visible}件を表示`;
+    }));
+  }
+</script>

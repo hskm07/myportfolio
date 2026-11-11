@@ -1,0 +1,9 @@
+---
+import Icon from './Icon.astro';
+import BrandMark from './BrandMark.astro';
+import { pathTo, site } from '../config/site';
+---
+<footer class="site-footer container">
+  <div class="footer-top"><a class="footer-brand" href={pathTo()}><BrandMark /><span>Orbitto</span></a><p>System development.<br />Thoughtful decisions.</p><a class="text-link" href={site.crowdworksUrl} target="_blank" rel="noopener noreferrer">クラウドワークス<Icon name="external" size={17} /></a></div>
+  <div class="footer-bottom"><span>© {new Date().getFullYear()} Orbitto</span><span>個人の活動・経験を紹介しています。</span><a href="#top">ページの先頭へ ↑</a></div>
+</footer>

@@ -1,0 +1,9 @@
+---
+interface Props { class?: string; }
+const { class: className = '' } = Astro.props;
+---
+<svg class:list={['brand-symbol', className]} viewBox="0 0 64 64" fill="none" aria-hidden="true">
+  <rect width="64" height="64" rx="3" fill="currentColor" />
+  <path d="M28 10C16 10 10 19 10 32s6 22 18 22 18-9 18-22S40 10 28 10Zm0 3c7 0 9 8 9 19s-2 19-9 19-9-8-9-19 2-19 9-19Z" fill="var(--paper, #f7f7f3)" fill-rule="evenodd" />
+  <path d="M48 46h7v7h-7z" fill="var(--brand-dot, #c8cca9)" />
+</svg>

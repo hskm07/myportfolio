@@ -1,0 +1,17 @@
+---
+import sharedGoals from '../assets/illustrations/shared-goals.webp';
+import target from '../assets/illustrations/target.webp';
+import checkingBoxes from '../assets/illustrations/checking-boxes.webp';
+
+interface Props {
+  name: 'shared-goals' | 'target' | 'checking-boxes';
+  class?: string;
+  loading?: 'eager' | 'lazy';
+}
+const { name, class: className, loading = 'lazy' } = Astro.props;
+const illustrations = { 'shared-goals': sharedGoals, target, 'checking-boxes': checkingBoxes };
+const illustration = illustrations[name];
+---
+<figure class:list={['portfolio-illustration', className]} aria-hidden="true">
+  <img src={illustration.src} width={illustration.width} height={illustration.height} alt="" loading={loading} decoding="async" />
+</figure>

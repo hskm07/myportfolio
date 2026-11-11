@@ -1,0 +1,19 @@
+unDraw illustrations adapted for Orbitto
+
+Original artist: Katerina Limpitsouni / unDraw
+Source: https://undraw.co/
+License: https://undraw.co/license
+
+User-provided references:
+- undraw_shared-goals_ijlg.svg
+- undraw_target_d6hf.svg
+- undraw_checking-boxes_j0im.svg
+
+The reference compositions were adapted with olive and charcoal colors for this
+portfolio and exported as transparent WebP illustrations. They are supporting
+illustrations, not actual project screenshots or evidence of client deliverables.
+
+The unDraw license permits illustration use and modification in personal and
+commercial projects without mandatory attribution. Its separate restrictions
+on asset redistribution, competing services and AI/ML model development remain
+applicable. Refer to the original license for its complete terms.

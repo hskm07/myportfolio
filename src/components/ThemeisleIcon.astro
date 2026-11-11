@@ -1,0 +1,36 @@
+---
+import team from '../assets/themeisle/team.svg?raw';
+import server from '../assets/themeisle/server.svg?raw';
+import code from '../assets/themeisle/code.svg?raw';
+
+interface Props { name: 'team' | 'server' | 'code'; id: string; }
+const { name, id } = Astro.props;
+// Keep original artwork intact on disk; namespace SVG IDs for repeated inline use.
+const originals = { team, server, code };
+const prefix = `themeisle-${id.replace(/[^a-zA-Z0-9_-]/g, '-')}`;
+const markup = originals[name]
+  .replace(/<(path|circle|ellipse)\b([^>]*)>/g, (tag, element, attributes) => {
+    const ornament = attributes.includes('d="M0 0h900v600H0z"')
+      || attributes.includes('fill="url(')
+      || attributes.includes('stroke-dasharray=')
+      || ((name === 'team' || name === 'code') && (element === 'circle' || element === 'ellipse'))
+      || ((name === 'team' || name === 'server') && element === 'path' && attributes.includes('fill="#E1E4E5"'));
+    return ornament ? tag.replace(`<${element}`, `<${element} class="themeisle-ornament"`) : tag;
+  })
+  .replace(/\bid="([^"]+)"/g, `id="${prefix}-$1"`)
+  .replace(/url\(#([^\)]+)\)/g, `url(#${prefix}-$1)`);
+---
+<span class:list={['themeisle-icon', `themeisle-icon--${name}`]} aria-hidden="true" set:html={markup} />
+
+<style is:global>
+  .themeisle-icon{display:block;width:132px;max-width:100%;line-height:0;flex-shrink:0}
+  .themeisle-icon>svg{display:block;width:100%;height:auto}
+  /* Match the website palette through presentation CSS, using the original vectors. */
+  .themeisle-icon [fill="#666AF6"]{fill:var(--olive)}
+  .themeisle-icon [fill="#31446C"]{fill:var(--ink)}
+  .themeisle-icon [fill="#E1E4E5"]{fill:#a5ad94}
+  .themeisle-icon [stroke="#E1E4E5"]{stroke:#899475}
+  .themeisle-icon [fill="#fff"]{fill:var(--paper)}
+  /* Suppress the original background shapes, dotted trails and scattered ornaments. */
+  .themeisle-icon .themeisle-ornament{display:none}
+</style>

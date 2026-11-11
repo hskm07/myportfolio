@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+import ThemeisleIcon from './ThemeisleIcon.astro';
+import { pathTo } from '../config/site';
+import { getProjectCategory } from '../lib/projects';
+interface Props { project: CollectionEntry<'projects'>; featured?: boolean; }
+const { project, featured = false } = Astro.props;
+const { data, id } = project;
+const number = String(data.order).padStart(2, '0');
+const href = pathTo(`projects/${id}/`);
+---
+{featured ? (
+  <article class="featured-case">
+    <div class="case-caption"><span>CASE {number} / {data.label}</span><span>{getProjectCategory(project)}</span></div>
+    <div class="featured-case-layout">
+      <div class="featured-case-copy">
+        <h3><a href={href}>{data.title}</a></h3>
+        <dl class="case-summary"><div><dt>課題</dt><dd>{data.challenge}</dd></div><div><dt>対応</dt><dd>{data.summary}</dd></div></dl>
+        <div class="tags">{data.tags.map(tag => <span>{tag}</span>)}</div>
+        <a class="text-link" href={href}>担当範囲・設計の工夫を読む<Icon name="arrow" size={18} /></a>
+      </div>
+      <div class="case-brief">
+        {data.illustration && <ThemeisleIcon name={data.illustration} id={`home-${id}`} />}
+        <div class="case-brief-heading"><span class="eyebrow">WORKFLOW OVERVIEW</span><span>{data.workflowCaption}</span></div>
+        <ol class="workflow-steps">{data.workflow.map((step, i) => <li><span>{data.workflowLabels[i]}</span><strong>{step}</strong>{i < 2 && <span class="workflow-down" aria-hidden="true">↓</span>}</li>)}</ol>
+        <div class="case-focus"><span class="eyebrow">DESIGN FOCUS</span><p>{data.focus}</p></div>
+      </div>
+    </div>
+  </article>
+) : (
+  <article class="case-row">
+    <span class="case-index">{number}</span>
+    <div class="case-row-copy"><p class="eyebrow">{data.label}</p><h3><a href={href}>{data.title}</a></h3><p>{data.summary}</p></div>
+    <div class="case-row-aside">{data.illustration && <ThemeisleIcon name={data.illustration} id={`home-${id}`} />}<span class="case-type">{getProjectCategory(project)}</span><div class="tags">{data.tags.map(tag => <span>{tag}</span>)}</div><a class="text-link" href={href}>詳細を読む<Icon name="arrow" size={18} /></a></div>
+  </article>
+)}

@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+import Icon from '../components/Icon.astro';
+import CaseStudy from '../components/CaseStudy.astro';
+import TechStack from '../components/TechStack.astro';
+import PortfolioIllustration from '../components/PortfolioIllustration.astro';
+import { pathTo, site } from '../config/site';
+import { getPublishedProjects } from '../lib/projects';
+const projects = await getPublishedProjects();
+const careerProjects = projects.filter(project => project.data.context === 'career');
+const freelanceProjects = projects.filter(project => project.data.context === 'freelance');
+const services = [
+  { number: '01', en: 'SYSTEM DEVELOPMENT', title: '業務を支える、システム開発。', description: 'Webアプリケーション、業務ツール、API・データ連携。利用者の作業や運用を理解し、要件に合わせて設計・実装・テストを進めます。', scope: ['業務アプリケーション・ツール開発', 'API連携・業務自動化・RPA', '既存システムの調査・改善'], deliverable: 'アプリケーション / 設計資料 / 操作手順書' },
+  { number: '02', en: 'TECHNICAL CONSULTING', title: '開発の前に、判断の材料を。', description: '課題の整理、システム化する範囲、技術選定、既存設計のレビュー。業務上の制約と技術的な実現性を確認し、次に進むための選択肢をまとめます。', scope: ['要件・開発体制・検証方針の整理', '技術調査・実現可能性の評価', '設計・コード・成果物のレビュー'], deliverable: '要件整理資料 / 技術評価レポート / 構成図' },
+  { number: '03', en: 'DATA & AI ENGINEERING', title: 'LLMとエージェントを、実装へ。', description: 'LLMの利用基盤やAIエージェント、関連アプリケーションの構成を検討。入力条件、出力の確認方法、運用上の制約を整理し、小さく検証します。', scope: ['LLM実行基盤の構成検討・モデル比較', 'AIエージェント・LLMアプリ開発', 'データ処理・出力検証フローの設計'], deliverable: 'データ処理プログラム / PoC / 検証レポート' },
+];
+const process = [
+  { number: '01', en: 'UNDERSTAND', title: '業務と目的を理解する', description: '現在の作業、困っていること、目指す状態を伺います。曖昧なご相談も、業務の流れから整理します。' },
+  { number: '02', en: 'DEFINE', title: '範囲と、確認方法をそろえる', description: '対象範囲・成果物・納期に加え、人が確認する工程や検証・受入の条件をすり合わせます。' },
+  { number: '03', en: 'BUILD & VERIFY', title: '設計し、実装し、確かめる', description: '合意した範囲で調査・開発・検証を進めます。例外や制約を確認し、必要な判断を共有します。' },
+  { number: '04', en: 'HAND OVER', title: '使い続けるための情報を渡す', description: 'ツールや調査結果に、使い方、前提条件、確認事項を添えてお届けします。' },
+];
+
+---
+<BaseLayout home={true}>
+  <section class="hero container" aria-labelledby="hero-heading">
+    <div class="hero-kicker"><p class="eyebrow">SYSTEM DEVELOPMENT & TECHNICAL CONSULTING</p><span>ORBITTO / INDEPENDENT ENGINEERING</span></div>
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <h1 id="hero-heading">事業の課題を、<br /><em>動くシステムへ。</em></h1>
+        <p class="hero-description">開発チームのリード、LLM基盤構築、AIエージェント開発。<br class="desktop-break" />現場で培った経験をもとに、<br class="desktop-break" />要件整理から設計・実装・検証まで支援します。</p>
+        <div class="hero-actions"><a class="button button-primary" href="#work">開発実績を見る<Icon name="arrow" size={18} /></a><a class="text-link" href="#contact">開発・技術相談へ<Icon name="external" size={18} /></a></div>
+      </div>
+      <aside class="hero-brief" aria-labelledby="brief-heading"><p class="eyebrow">WHERE TO START</p><h2 id="brief-heading">こんな段階から、<br />ご相談いただけます。</h2><ol><li><span>01</span><p>開発の設計・品質を<br />見直したい。</p></li><li><span>02</span><p>LLM・AIエージェントを<br />業務に組み込みたい。</p></li><li><span>03</span><p>技術選定や検証の<br />進め方を整理したい。</p></li></ol><a href="#services" class="text-link">支援内容を見る<Icon name="arrow" size={17} /></a></aside>
+    </div>
+    <div class="hero-bottom"><p>業務理解から、実装・引き継ぎまで。</p><div><span>CONSULTING</span><b aria-hidden="true">→</b><span>DESIGN</span><b aria-hidden="true">→</b><span>DEVELOPMENT</span></div></div>
+  </section>
+
+  <section id="work" class="section work-section" aria-labelledby="work-heading"><div class="container">
+    <div class="section-heading"><p class="section-index">01 / SELECTED EXPERIENCE</p><div><h2 id="work-heading">チームを導き、<br class="mobile-break" />AIを実装につなぐ。</h2><p class="section-intro">開発チームのリード、LLM基盤構築、AIエージェント開発。<br />本業で担当した取り組みを、会社名・固有案件名を伏せてご紹介します。</p></div></div>
+    <div class="case-studies">{careerProjects.map((project, index) => <CaseStudy project={project} featured={index === 0} />)}</div>
+    <p class="work-note">チームの中で担当した役割と取り組みを紹介しています。実際の画面・データ・内部構成は掲載していません。</p>
+  </div></section>
+
+  <TechStack />
+
+  <section id="services" class="section services-section container" aria-labelledby="services-heading">
+    <div class="section-heading illustrated-heading"><p class="section-index">03 / SERVICES</p><div class="illustrated-heading-copy"><h2 id="services-heading">必要なところから、<br />一貫して支える。</h2><p class="section-intro">要件が固まる前の相談も、範囲を決めた開発も。<br />目的に合わせて、考えることと、つくることをつなぎます。</p></div><PortfolioIllustration name="target" class="section-heading-illustration services-illustration" /></div>
+    <div class="service-list">{services.map(service => <article class="service-row"><div class="service-identity"><span class="item-number">{service.number}</span><p class="eyebrow">{service.en}</p></div><div class="service-main"><h3>{service.title}</h3><p>{service.description}</p></div><div class="service-scope"><ul>{service.scope.map(item => <li>{item}</li>)}</ul><div class="deliverable"><span>成果物の例</span><p>{service.deliverable}</p></div></div></article>)}</div>
+  </section>
+
+  <section id="process" class="section process-section container" aria-labelledby="process-heading">
+    <div class="section-heading illustrated-heading"><p class="section-index">04 / WORKING TOGETHER</p><div class="illustrated-heading-copy"><h2 id="process-heading">依頼前の不明点を、<br />一つずつ明確に。</h2><p class="section-intro">何をつくるか、どこまで対応するか、何をもって確認するか。<br />最初に認識をそろえ、合意したゴールに向けて進めます。</p></div><PortfolioIllustration name="checking-boxes" class="section-heading-illustration process-illustration" /></div>
+    <div class="process-layout"><aside class="agreement-note"><p class="eyebrow">PROJECT AGREEMENT</p><h3>まず、合意すること。</h3><dl><div><dt>目的</dt><dd>解決したい課題・目指す状態</dd></div><div><dt>範囲</dt><dd>対象の業務・システム・データ</dd></div><div><dt>成果物</dt><dd>納品するもの・納期・引き継ぎ</dd></div><div><dt>確認方法</dt><dd>検証・レビュー・受入の条件</dd></div></dl><p class="agreement-foot">スポット・成果物単位の支援を中心に、<br />資料とテキストで丁寧に進めます。</p></aside><ol class="process-list">{process.map(step => <li><div class="process-step-number">{step.number}</div><div><p class="eyebrow">{step.en}</p><h3>{step.title}</h3><p>{step.description}</p></div></li>)}</ol></div>
+    <p class="engagement-note"><strong>対応時期・範囲は個別に調整します。</strong>常駐、即時の障害対応、期限を定めない保守は、標準の支援範囲に含めていません。</p>
+    <div class="faq"><details><summary>まだ仕様や要件が決まっていなくても相談できますか？<Icon name="chevron" size={18} /></summary><p>はい。現在の業務と、改善したい点からお聞かせください。開発に進む前の要件整理、技術調査、既存の設計・コードのレビューもご相談いただけます。</p></details><details><summary>どのようなやり取り・納品形式になりますか？<Icon name="chevron" size={18} /></summary><p>資料やテキストによる非同期のやり取りを中心に、必要に応じて打ち合わせを調整します。ツール・プログラム・設計資料・調査レポートなど、ご相談内容に合わせて成果物と確認方法を決めます。</p></details></div>
+  </section>
+
+  <section id="about" class="section about-section" aria-labelledby="about-heading"><div class="container">
+    <div class="section-heading"><p class="section-index">05 / ABOUT ORBITTO</p><div><h2 id="about-heading">現場の言葉を、<br />設計と実装につなぐ。</h2></div></div>
+    <div class="about-layout"><div class="about-brand"><BrandMark /><p class="about-wordmark">Orbitto</p><p class="eyebrow">ENGINEERING & CONSULTING</p><p>業務を理解する。<br />選択の理由を伝える。<br />使える形で、引き継ぐ。</p></div><div class="about-copy"><p class="about-lead">業務と技術の両側から、<br />改善の道筋を考えます。</p><p>本業では、開発チームのリード、データ活用アプリケーションの設計・開発、ローカルLLMの実行基盤構築、AIエージェントの開発・検証に取り組んできました。</p><p>利用者へのヒアリングや要件整理に加え、コードレビュー、自動テスト、開発者向け文書の整備など、チームで開発を進めるための仕組みづくりも経験しています。設計・実装と、技術的な判断の両面から支援します。</p><p>重視しているのは、技術を選ぶ理由と運用時の前提を共有すること。成果物に使い方や制約を添えて、次の人が扱える形に整えます。</p></div></div>
+    <div id="experience" class="experience-layout" aria-labelledby="experience-heading"><div><p class="eyebrow">EXPERIENCE & CAPABILITIES</p><h3 id="experience-heading">複数領域をつなぐ、<br />技術と経験。</h3><p class="experience-note">開発実績で紹介した担当領域を、技術と開発プロセスの両面からまとめています。</p></div><div><dl class="experience-list"><div><dt>要件・設計</dt><dd>利用者ヒアリング、要件定義、仕様策定、設計レビュー、受入テスト。</dd></div><div><dt>データ・AI</dt><dd>ローカルLLM基盤、AIエージェント・LLMアプリケーション開発、データ処理・情報抽出・RAGの検証。</dd></div><div><dt>品質・開発体制</dt><dd>コードレビュー、自動テスト、CI/CD、開発者向けドキュメントの整備。</dd></div></dl></div></div>
+  </div></section>
+
+  <section id="additional-work" class="supplemental-work container" aria-labelledby="additional-work-heading">
+    <p class="eyebrow">ADDITIONAL EXPERIENCE</p><h2 id="additional-work-heading">その他の業務改善事例</h2><p>副業で担当した業務自動化の事例を、補足としてまとめています。</p>
+    <details class="supplemental-cases"><summary>業務自動化の事例を読む（{freelanceProjects.length}件）<Icon name="chevron" size={18} /></summary><div class="supplemental-list">{freelanceProjects.map(project => <article><h3><a href={pathTo(`projects/${project.id}/`)}>{project.data.title}<Icon name="external" size={17} /></a></h3><p>{project.data.summary}</p></article>)}</div></details>
+  </section>
+
+  <section id="contact" class="section contact-section container" aria-labelledby="contact-heading">
+    <div class="contact-topline"><p class="section-index">06 / CONTACT</p><span>LET’S FIND THE NEXT STEP.</span></div>
+    <div class="contact-layout">
+      <div><h2 id="contact-heading">まだ仕様になっていない<br />課題から、ご相談ください。</h2><p>システム開発、業務の整理、技術選定・設計レビュー。<br />まずは、現在の状況と「こうしたい」をお聞かせください。</p></div>
+      <div class="contact-action">
+        <p class="contact-status">{site.inquiryStatus === 'paused' ? '現在、新規案件の受付を調整中です' : site.inquiryMessage}</p>
+        {site.inquiryStatus === 'paused' ? <p class="paused-message">受付再開までお待ちください。</p> : site.contactFormUrl ? (
+          <a class="button button-primary button-contact" href={site.contactFormUrl} target="_blank" rel="noopener noreferrer"><span>お問い合わせ<small>CONTACT / GOOGLE FORMS</small></span><Icon name="external" size={22} /></a>
+        ) : (
+          <span class="button button-primary button-contact button-contact--unavailable" aria-disabled="true"><span>お問い合わせ<small>受付準備中</small></span><Icon name="external" size={22} /></span>
+        )}
+        <a class="text-link contact-crowdworks" href={site.crowdworksUrl} target="_blank" rel="noopener noreferrer">クラウドワークスのプロフィールを見る<Icon name="external" size={17} /></a>
+        <p class="contact-note">{site.contactFormUrl ? 'Googleフォームが別タブで開きます。わかる範囲で内容をお聞かせください。' : 'お問い合わせフォームは準備中です。クラウドワークスからもご相談いただけます。'}</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

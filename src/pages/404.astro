@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { pathTo } from '../config/site';
+---
+<BaseLayout title="ページが見つかりません | Orbitto" noindex={true}><section class="not-found container"><p class="eyebrow">404 — PAGE NOT FOUND</p><h1>こちらのページは<br />見つかりませんでした。</h1><p>URLが変更されたか、ページが存在しない可能性があります。</p><a class="button button-primary" href={pathTo()}>トップページへ<Icon name="arrow" size={18} /></a></section></BaseLayout>

@@ -1,0 +1,55 @@
+Orbitto third-party assets
+
+1. Themeisle / Illu-station illustrations
+   Official source: https://themeisle.com/illustrations/
+   Artwork used: 259.svg (team), 73.svg (server), 65.svg (code).
+   License: public/licenses/themeisle-illustrations.txt
+   The original SVG files are stored unchanged under src/assets/themeisle/.
+   Presentation CSS recolors them and hides background ornaments to match the website.
+   Used as supporting illustrations, not evidence of client deliverables or actual system screenshots.
+
+2. Libre Baskerville
+   Copyright 2012 The Libre Baskerville Project Authors
+   Official source: https://github.com/google/fonts/tree/main/ofl/librebaskerville
+   License: SIL Open Font License 1.1; see public/licenses/libre-baskerville-OFL.txt
+   Original variable TTF files are bundled unchanged under src/assets/fonts/.
+   Japanese text uses system Mincho/serif fonts, which are not distributed with this project.
+
+Individual file sources and SHA-256 hashes are in third-party-assets.json.
+
+3. Technology logos
+   Official product/project websites, official repositories, their linked asset CDNs, and TechIcons / Devicon.
+   Sources, file hashes and selected brand policies: tech-logo-sources.json
+   Files are stored unchanged under src/assets/tech-logos/.
+   Logos identify technologies used by the portfolio owner, without claiming certification, sponsorship or endorsement.
+   Their original colors and proportions are retained.
+   OpenAI Codex uses the official OpenAI vendor mark.
+   Unverified or generic-language/protocol marks are represented as neutral text, not as official artwork.
+   Product names and logos remain the property of their respective owners.
+   Kubernetes and the Kubernetes logo are trademarks of The Linux Foundation.
+   Rust artwork: https://github.com/rust-lang/rust-artwork
+   Go logo: https://go.dev/blog/go-brand (logo by the Go Authors)
+   GitHub Octicons: MIT License; public/licenses/github-octicons-LICENSE.txt
+   Rust logo: Creative Commons Attribution 4.0, unmodified; attribution and source links in public/licenses/tech-logos.txt
+   GitLab logo: official @gitlab/svgs package 3.173.0, distributed through unpkg.
+   Copyright (c) 2011-present GitLab Inc.; package license: MIT; public/licenses/gitlab-svgs-LICENSE.txt
+
+4. TechIcons / Devicon technology icons
+   Catalogue: https://techicons.dev/
+   Downloaded SVGs: JavaScript, C, C++, Bash, GitHub Actions.
+   The files are obtained from the icon.icepanel.io URLs linked by TechIcons.
+   Upstream collection credited by TechIcons: https://github.com/devicons/devicon
+   Copyright (c) 2015 konpa. MIT License; public/licenses/devicon-LICENSE.txt
+   Original SVG files, colors and proportions are retained.
+   Bash is used as a representative shell-script icon; experience covers Shell Script as stated.
+   Catalogue pages, source URLs and SHA-256 hashes are recorded in tech-logo-sources.json.
+
+5. unDraw illustration references
+   Artist: Katerina Limpitsouni / unDraw. Source: https://undraw.co/
+   User-provided references: undraw_shared-goals_ijlg.svg, undraw_target_d6hf.svg,
+   and undraw_checking-boxes_j0im.svg.
+   Adapted to olive and charcoal using image editing, then encoded as transparent WebP.
+   Used in the team-leadership detail heading and the homepage services/process headings.
+   These are supporting illustrations, not project screenshots or client deliverables.
+   License: https://undraw.co/license; public/licenses/undraw-illustrations.txt
+   Reference and output hashes are recorded in third-party-assets.json.

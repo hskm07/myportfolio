@@ -1,0 +1,9 @@
+---
+interface Props { name: 'arrow' | 'external' | 'chevron'; size?: number; }
+const { name, size = 20 } = Astro.props;
+---
+<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  {name === 'arrow' && <path d="M4 12h15M13 5l7 7-7 7" />}
+  {name === 'external' && <path d="M7 17 17 7M7 7h10v10" />}
+  {name === 'chevron' && <path d="m6 9 6 6 6-6" />}
+</svg>

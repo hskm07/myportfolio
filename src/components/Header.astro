@@ -1,0 +1,36 @@
+---
+import Icon from './Icon.astro';
+import BrandMark from './BrandMark.astro';
+import { pathTo, site } from '../config/site';
+const { home = false } = Astro.props;
+const root = home ? '' : pathTo();
+---
+<header class="site-header">
+  <div class="header-inner container">
+    <a class="brand" href={pathTo()} aria-label={`${site.displayName} ホーム`}><BrandMark /><span class="brand-name">Orbitto<span>ENGINEERING & CONSULTING</span></span></a>
+    <nav class="desktop-nav" aria-label="メインナビゲーション"><a href={`${root}#work`}>開発実績</a><a href={`${root}#tech-stack`}>技術スタック</a><a href={`${root}#services`}>支援内容</a><a href={`${root}#about`}>Orbittoについて</a></nav>
+    <a class="header-contact" href={`${root}#contact`}>{site.inquiryStatus === 'paused' ? '受付状況' : 'お問い合わせ'}<Icon name="external" size={17} /></a>
+    <button class="menu-button" aria-expanded="false" aria-controls="mobile-nav" aria-label="メニューを開く"><span></span><span></span></button>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="モバイルナビゲーション" hidden><a href={`${root}#work`}>開発実績</a><a href={`${root}#tech-stack`}>技術スタック</a><a href={`${root}#services`}>支援内容</a><a href={`${root}#process`}>進め方</a><a href={`${root}#about`}>Orbittoについて</a><a href={`${root}#experience`}>担当領域</a><a href={`${root}#contact`}>お問い合わせ</a></nav>
+</header>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.menu-button');
+  const menu = document.querySelector<HTMLElement>('#mobile-nav');
+  function closeMenu() {
+    button?.setAttribute('aria-expanded', 'false');
+    button?.setAttribute('aria-label', 'メニューを開く');
+    if (menu) menu.hidden = true;
+  }
+  button?.addEventListener('click', () => {
+    const open = button.getAttribute('aria-expanded') !== 'true';
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    if (menu) menu.hidden = !open;
+  });
+  menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && button?.getAttribute('aria-expanded') === 'true') { closeMenu(); button.focus(); }
+  });
+  window.matchMedia('(min-width: 901px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
+</script>
